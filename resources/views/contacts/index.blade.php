@@ -46,5 +46,6 @@
                 There is no contacts atm.
             @endforelse
         </tbody>
-      </table>
+    </table>
+    {{ $contacts->links() }}
 @endsection
