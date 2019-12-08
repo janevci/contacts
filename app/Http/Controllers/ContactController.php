@@ -50,7 +50,12 @@ class ContactController extends Controller
             'phone' => 'required',
             'group_id' => 'required'
         ]);
-
+        
+        if ($request->hasFile('avatar')) {
+            $name = rand() . $request->file('avatar')->getClientOriginalName();
+            $path = $request->file('avatar')->storeAs('avatars', $name);
+            $attributes["avatar"] = $name;
+        }
         Contact::create($attributes);
 
         return redirect('/contacts');

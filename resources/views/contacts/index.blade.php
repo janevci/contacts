@@ -11,7 +11,10 @@
             @endphp
             @forelse ($contacts as $contact)
                 <tr>
-                    <th scope="row">{{ $i }}</th>
+                    <td scope="row">{{ $i }}</td>
+                    <td>
+                        <img src ="{{ asset('storage/avatars/' . $contact->avatar) }}" alt="Avatar">
+                    </td>
                     <td>{{ $contact->first_name }}</td>
                     <td>{{ $contact->last_name }}</td>
                     <td>{{ $contact->address }}</td>

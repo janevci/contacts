@@ -19,11 +19,12 @@ class CreateContactsTable extends Migration
             $table->char('last_name', 50);
             $table->char('address', 100);
             $table->char('city', 50);
-            $table->tinyInteger('zip');
+            $table->integer('zip');
             $table->char('country', 50);
             $table->char('email', 50);
             $table->char('phone', 30);
             $table->unsignedBigInteger('group_id');
+            $table->string('avatar')->nullable();
             $table->timestamps();                
         });
     }

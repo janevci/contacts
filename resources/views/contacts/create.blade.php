@@ -2,7 +2,7 @@
 
 @section('content')
 <h3>Add new ontact</h3>
-<form action="\contacts" method="POST">
+<form action="\contacts" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="form-group">
         <input type="text" class="form-control contact-input" name="first_name" placeholder="Enter contact first name">
@@ -21,6 +21,8 @@
                 <option value="0">None</option>
             @endforelse
         </select>
+        Upload avatar <br>
+        <input type="file" name="avatar" id="avatar">
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
