@@ -14,7 +14,7 @@ class CreateContactsTable extends Migration
     public function up()
     {
         Schema::create('contacts', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->char('first_name', 50);
             $table->char('last_name', 50);
             $table->char('address', 100);
@@ -23,7 +23,7 @@ class CreateContactsTable extends Migration
             $table->char('country', 50);
             $table->char('email', 50);
             $table->char('phone', 30);
-            $table->unsignedBigInteger('group_id');
+            $table->unsignedInteger('group_id');
             $table->string('avatar')->nullable();
             $table->timestamps();                
         });

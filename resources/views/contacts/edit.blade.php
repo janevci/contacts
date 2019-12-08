@@ -22,6 +22,10 @@
                 <option value="0">None</option>
             @endforelse
         </select>
+        Upload avatar <br>
+        <input type="file" name="avatar" id="avatar" class="form-control contact-input">
+        Note
+        <textarea name="note" class="form-control contact-input" cols="30" rows="10" >{{ $contact->note->note }}</textarea>
     </div>
     <button type="submit" class="btn btn-primary">Save</button>
 </form>

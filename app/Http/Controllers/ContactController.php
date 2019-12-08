@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Contact;
 use App\Group;
+use App\Note;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -56,7 +57,14 @@ class ContactController extends Controller
             $path = $request->file('avatar')->storeAs('avatars', $name);
             $attributes["avatar"] = $name;
         }
-        Contact::create($attributes);
+        $contact = Contact::create($attributes);
+
+        if($request->has('note')) {
+            $note = new Note;
+            $note->note = $request->note;
+            $note->contact_id = $contact->id;
+            $note->save();
+        }
 
         return redirect('/contacts');
     }
@@ -107,6 +115,10 @@ class ContactController extends Controller
             'group_id' => 'required'
         ]);
         $contact->update($attributes);
+
+        if($request->has('note')) {
+            \DB::table('notes')->where('contact_id', $contact->id)->update(['note' => $request->note]);
+        }
 
         return redirect("/contacts");
     }
