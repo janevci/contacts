@@ -14,7 +14,9 @@ class GroupController extends Controller
      */
     public function index()
     {
-        //
+        $groups = Group::all();
+
+        return view('groups.index', compact('groups'));
     }
 
     /**
@@ -24,7 +26,7 @@ class GroupController extends Controller
      */
     public function create()
     {
-        //
+        return view('groups.create');
     }
 
     /**
@@ -35,7 +37,13 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attributes = request()->validate([
+            'name' => 'required'
+        ]);
+
+        Group::create($attributes);
+
+        return redirect('/groups');
     }
 
     /**
@@ -55,9 +63,9 @@ class GroupController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Group $group)
     {
-        //
+        return view('groups.edit', compact('group'));
     }
 
     /**
@@ -67,9 +75,14 @@ class GroupController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Group $group)
     {
-        //
+        $attributes = request()->validate([
+            'name' => 'required', 
+        ]);
+        $group->update($attributes);
+
+        return redirect("/groups");
     }
 
     /**
@@ -78,8 +91,10 @@ class GroupController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Group $group)
     {
-        //
+        $group->delete();
+
+        return redirect('/groups');
     }
 }

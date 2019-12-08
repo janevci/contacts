@@ -1,3 +1,11 @@
 .container-fluid {
     margin-top: 10px;
 }
+
+.container-fluid-custom {
+    margin-bottom: 20px;
+}
+
+.btn-td {
+    padding-right: 0px !important;
+}
