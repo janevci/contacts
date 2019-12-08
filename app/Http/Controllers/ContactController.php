@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contact;
+use App\Group;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -14,7 +15,9 @@ class ContactController extends Controller
      */
     public function index()
     {
-        //
+        $contacts = Contact::all();
+
+        return view('contacts.index', compact('contacts'));
     }
 
     /**
@@ -24,7 +27,8 @@ class ContactController extends Controller
      */
     public function create()
     {
-        //
+        $groups = Group::all();
+        return view('contacts.create', compact('groups'));
     }
 
     /**
@@ -35,7 +39,21 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attributes = request()->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'address' => 'required',
+            'city' => 'required',
+            'zip' => 'required',
+            'country' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'group_id' => 'required'
+        ]);
+
+        Contact::create($attributes);
+
+        return redirect('/contacts');
     }
 
     /**
@@ -55,9 +73,12 @@ class ContactController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Contact $contact)
     {
-        //
+        $groups = Group::all();
+
+        return view('contacts.edit', compact('contact', 'groups'));
+        
     }
 
     /**
@@ -67,9 +88,22 @@ class ContactController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Contact $contact)
     {
-        //
+        $attributes = request()->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'address' => 'required',
+            'city' => 'required',
+            'zip' => 'required',
+            'country' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'group_id' => 'required'
+        ]);
+        $contact->update($attributes);
+
+        return redirect("/contacts");
     }
 
     /**
@@ -78,8 +112,10 @@ class ContactController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Contact $contact)
     {
-        //
+        $contact->delete();
+
+        return redirect('/contacts');
     }
 }

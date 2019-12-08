@@ -16,3 +16,6 @@ Route::get('/', function () {
 });
 
 Route::resource('groups', 'GroupController');
+
+Route::resource('contacts', 'ContactController');
+

@@ -8,6 +8,6 @@
     <div class="form-group">
         <input type="text" class="form-control" id="name" name="name" value="{{ $group->name }}">
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Save</button>
 </form>
 @endsection

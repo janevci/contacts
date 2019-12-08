@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Contact extends Model
 {
+    protected $fillable = ['first_name', 'last_name', 'address', 'city', 'zip','country','email','phone', 'group_id'];
+
     public function group()
     {
         return $this->belongsTo(Group::class);
