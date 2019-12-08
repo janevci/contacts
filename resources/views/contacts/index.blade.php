@@ -1,17 +1,30 @@
 @extends('layout')
 
 @section('content')
+<div class="container-fluid container-fluid-custom">
+    <a class="btn btn-primary" href="\contacts\create" role="button">ADD CONTACT</a>
+</div>
 <table class="table">
-        <div class="container-fluid container-fluid-custom">
-            <a class="btn btn-primary" href="\contacts\create" role="button">ADD CONTACT</a>
-        </div>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>Zip</th>
+                <th>Country</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Group</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
         <tbody>
-            @php
-            $i = 1
-            @endphp
             @forelse ($contacts as $contact)
                 <tr>
-                    <td scope="row">{{ $i }}</td>
+                    <td>{{ $contact->id }}</td>
                     {{-- <td>
                         <img src ="{{ asset('storage/avatars/' . $contact->avatar) }}" alt="Avatar">
                     </td> --}}
@@ -19,6 +32,7 @@
                     <td>{{ $contact->last_name }}</td>
                     <td>{{ $contact->address }}</td>
                     <td>{{ $contact->city }}</td>
+                    <td>{{ $contact->zip }}</td>
                     <td>{{ $contact->country }}</td>
                     <td>{{ $contact->email }}</td>
                     <td>{{ $contact->phone }}</td>
@@ -37,11 +51,7 @@
                             <button type="submit" class="btn btn-danger">DELETE</button>
                         </form>
                     </td>
-                </tr>
-                @php
-                $i++;
-                @endphp
-                
+                </tr>            
             @empty
                 There is no contacts atm.
             @endforelse
